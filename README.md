@@ -4,9 +4,10 @@
 
 2 - Comprobar el adaptador de red Virtualbox o el que se use (en mi caso es "Realtek PCIe 2.5GbE Family Controller").
 3 - Cambiarlo donde indica los adaptadores
-               - /lab_setup/limpiar.cmd
-               - /lab_setup/setup.cmd
-               - Vagrantfile (los adaptadores de cada maquina)
+
+               * /lab_setup/limpiar.bat
+               * /lab_setup/setup.bat
+               * Vagrantfile (los adaptadores de cada maquina)
 
 4 - Cuando se ha cambiado ejecutar limpiar y luego setup.
 
@@ -15,7 +16,7 @@ Este archivo se encuentra en la carpeta donde se ha instalado Vbox.
 
 6 - Ejecutar iniciar.bat.
 
-7 - Cuando haya terminado de instalarse comprobar que el adaptador de red de los bots ha quedado como "no conectado".
+7 - Cuando haya terminado de instalarse comprobar que el adaptador de red 1 de los bots ha quedado como "no conectado" correctamente.
 
 8 - Finalmente /scripts/start.bat para iniciar el cnc y cargar el malware.
 
