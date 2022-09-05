@@ -8,6 +8,8 @@
                * /lab_setup/limpiar.bat
                * /lab_setup/setup.bat
                * Vagrantfile (los adaptadores de cada maquina)
+               
+3.5 - (Opcional) En los .bat anteriores tambien se modifican o crean carpetas donde se instalarán las máquinas (Preferencias de virtualbox). Está configurado para que cree una carpeta auxiliar en mi disco E:, se puede modificar al gusto o eliminarlo para que Vbox lo deje por defecto.
 
 4 - Cuando se ha cambiado ejecutar limpiar y luego setup.
 
