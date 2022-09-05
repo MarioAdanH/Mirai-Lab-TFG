@@ -1,4 +1,4 @@
-# INSTRUCCIONES 
+# Instrucciones
 
 1 - Instalar Vagrant y Virtualbox (se puede hacer desde /lab_setup/descargaVagrantVbox.bat).
 
