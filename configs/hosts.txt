@@ -1,0 +1,3 @@
+192.168.1.101:23 admin:admin
+192.168.1.102:23 admin:admin
+192.168.1.103:23 admin:admin
