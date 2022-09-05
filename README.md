@@ -28,7 +28,7 @@ Este repositorio es para fines académicos, el uso de este software es su respon
 ## Warning
 El archivo zip de este repositorio ha sido identificado por algunos programas AV como malware. Por favor, tenga cuidado.
 
-<h1 align="center">Estudio, despliegue y modificación de la Botnet Mira - Botnet DDoS Ataques disponibles</h1>
+<h1 align="center">Estudio, despliegue y modificación de la Botnet Mirai - Botnet DDoS Ataques disponibles</h1>
 <em><h5 align="center">(Lenguaje de programación - C and Go )</h5></em>
 
 <p align="center">
@@ -39,7 +39,7 @@ El archivo zip de este repositorio ha sido identificado por algunos programas AV
 
  * 💣 Capa 7
 
-   * <img src="https://img.icons8.com/cotton/344/domain.png" width="16" height="16" alt="http"> HTTP | HTTP Flood
+   * HTTP | HTTP Flood
    * <img src="https://img.icons8.com/plasticine/2x/null-symbol.png" width="16" height="16" alt="null"> NULL | Null UserAgent and ...
    * <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" width="16" height="16" alt="Google bot"> BOT | Like Google bot
    * <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Apache_HTTP_Server_Logo_%282016%29.svg/1000px-Apache_HTTP_Server_Logo_%282016%29.svg.png" width="16" height="16" alt="Apache Webserver"> APACHE | Apache Expliot
@@ -48,15 +48,15 @@ El archivo zip de este repositorio ha sido identificado por algunos programas AV
 
 
 * 🧨 Capa 4: 
-  * <img src="https://raw.githubusercontent.com/kgretzky/pwndrop/master/media/pwndrop-logo-512.png" width="16" height="16" alt="tcp"> TCP | TCP Flood 
-  * <img src="https://styles.redditmedia.com/t5_2rxmiq/styles/profileIcon_snoob94cdb09-c26c-4c24-bd0c-66238623cc22-headshot.png" width="16" height="16" alt="udp"> UDP | UDP Flood 
-  * <img src="https://cdn-icons-png.flaticon.com/512/1918/1918576.png" width="16" height="16" alt="syn"> SYN | SYN Flood
-  * <img src="https://cdn-icons-png.flaticon.com/512/1017/1017466.png" width="16" height="16" alt="gre"> GREIP | GRE IP Flood
-  * <img src="https://icon-library.com/images/icon-ping/icon-ping-28.jpg" width="16" height="16" alt="ack"> ACK | ACK Flood
-  * <img src="https://s6.uupload.ir/files/1059643_g8hp.png" width="16" height="16" alt="greth"> GREETH | GRE Ethernet Flood
+  * TCP | TCP Flood 
+  * UDP | UDP Flood 
+  * SYN | SYN Flood
+  * GREIP | GRE IP Flood
+  * ACK | ACK Flood
+  * GREETH | GRE Ethernet Flood
   * <img src="https://ia803109.us.archive.org/27/items/source-engine-video-projects/source-engine-video-projects_itemimage.png" width="16" height="16" alt="vse"> VSE | Valve Source Engine specific flood
-  * <img src="https://cdn-icons-png.flaticon.com/512/2653/2653461.png" width="16" height="16" alt="dns"> DNS | DNS Resolver Flood
-  * <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRct5OvjSCpUftyRMm3evgdPOa-f8LbwJFO-A&usqp=CAU" width="16" height="16" alt="cldap"> UDPPLAIN | UDP Flood optimized for PPS
+  * DNS | DNS Resolver Flood
+  * UDPPLAIN | UDP Flood optimized for PPS
 
 * ⚙️ Tools - Scripts del lab
 `
