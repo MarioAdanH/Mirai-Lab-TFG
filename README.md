@@ -1,3 +1,24 @@
+# INSTRUCCIONES 
+
+1 - Instalar Vagrant y Virtualbox (se puede hacer desde /lab_setup/descargaVagrantVbox.bat).
+
+2 - Comprobar el adaptador de red Virtualbox o el que se use (en mi caso es "Realtek PCIe 2.5GbE Family Controller").
+3 - Cambiarlo donde indica los adaptadores
+               - /lab_setup/limpiar.cmd
+               - /lab_setup/setup.cmd
+               - Vagrantfile (los adaptadores de cada maquina)
+
+4 - Cuando se ha cambiado ejecutar limpiar y luego setup.
+
+5 - IMPORTANTE: Se debe modificar "iniciar_bots.bat" linea 25 con el disco donde se ubique la instalación de Vbox. Con VBoxManage se modifica el adaptardor para cerrarlo a la red.
+Este archivo se encuentra en la carpeta donde se ha instalado Vbox.
+
+6 - Ejecutar iniciar.bat.
+
+7 - Cuando haya terminado de instalarse comprobar que el adaptador de red de los bots ha quedado como "no conectado".
+
+8 - Finalmente /scripts/start.bat para iniciar el cnc y cargar el malware.
+
 # Mirai botnet
 
 Mirai es un malware cuyo destino es infectar dispositivos IoT (Internet de las cosas) mediante el uso de las credenciales por defecto que muchos de estos dispositivos emplean, y que no son modificadas, lo cual es un problema importante de seguridad. El objetivo principal de este malware es emplear estos dispositivos infectados para realizar ataques DDoS.
